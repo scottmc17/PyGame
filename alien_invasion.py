@@ -101,6 +101,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
@@ -124,7 +126,7 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-        print(len(self.bullets)) ## After the game runs and the bullets are being deleted properly (in terminal), delete Print.
+        #print(len(self.bullets)) ## After the game runs and the bullets are being deleted properly (in terminal), delete Print.
 
         self._check_bullet_alien_collisions()
 
@@ -152,7 +154,7 @@ class AlienInvasion:
     
     def _ship_hit(self):
         """Respond to the ship being hit by an alien."""
-        if self.stats.ship_left > 0:
+        if self.stats.ships_left > 0:
             # Decrement ships_left, and update scoreboard.
             self.stats.ships_left -= 1
             self.sb.prep_ships()
@@ -220,7 +222,7 @@ class AlienInvasion:
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""
         for alien in self.aliens.sprites():
-            if alien.check_egdes():
+            if alien.check_edges():
                 self._change_fleet_direction()
                 break
     

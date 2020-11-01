@@ -4,10 +4,10 @@ from pygame.sprite import Sprite
 class Alien(Sprite):
     """A class to represent a single alien in the feet."""
 
-    def __init__self(self, ai_game):
+    def __init__(self, ai_game):
         """Initialize the alien and set its starting position."""
         super().__init__()
-        self.screen = ai_game
+        self.screen = ai_game.screen
         self.settings = ai_game.settings
 
         # Load the alien image and set its rect attribute.
